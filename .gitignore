@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# results of your own runs (the paper's results are committed under data/paper_results/)
+data/results/*
+!data/results/.gitkeep
+out/
+
+# regenerable inputs
+data/exported/
+data/train/mnist_cache/
+
+# site settings and scratch
+reproduce/slurm/site.env
+*.out
+
+# SEAL backend build artefacts (SEAL + HEXL sources and installs, benches, run scratch)
+seal_backend/build/
+seal_backend/_deps/
+seal_backend/_run*/

@@ -1,0 +1,146 @@
+# sweep fits (12 CSVs, 199 correct runs, 199 configurations)
+correctness: 199/199 runs decrypted to the plaintext reference
+cost model     matmul_ms ~ matmul_mult_n  N=16384  slope=1.008  coef=0.01068  R2=0.9929  (n=35)
+cost model     matmul_ms ~ matmul_mult_n  N=32768  slope=1.005  coef=0.02623  R2=0.9987  (n=164)
+cost model    encryption ~ encrypt_n      N=16384  slope=1.008  coef=0.00897  R2=0.9975  (n=35)
+cost model    encryption ~ encrypt_n      N=32768  slope=1.010  coef=0.02346  R2=0.9975  (n=164)
+cost model   peak_rss_kb ~ ct_bytes_total N=16384  slope=0.927  coef=1.212  R2=0.9979  (n=35)
+cost model   peak_rss_kb ~ ct_bytes_total N=32768  slope=0.970  coef=1.125  R2=0.9994  (n=164)
+per-op ms   rotation             L5=3.88  L6=5.27  L7=5.56  L8=9.41  L9=9.85  L10=10.34  L11=11.13  L12=11.75
+per-op ms   ct$\times$ct mult    L5=7.00  L6=7.33  L7=8.80  L8=16.19  L9=16.75  L10=17.41  L11=17.77  L12=18.41
+per-op ms   encrypt              L5=8.06  L6=8.90  L7=9.68  L8=21.49  L9=23.16  L10=24.86  L11=26.49  L12=28.19
+speedup vs COPSE  ens    OD: n004=8.58  n008=8.75  n016=8.82  n032=8.89  n064=8.78  n128=8.65
+speedup vs VESTA  ens    OD: n004=7.05  n008=7.19  n016=7.25  n032=7.30  n064=7.24  n128=7.17
+mem 1MM/COPSE    ens    OD: n004=12.5%  n008=11.1%  n016=10.3%  n032=9.9%  n064=9.7%  n128=10.0%
+speedup vs COPSE  ens    UD: n004=3.31  n008=3.38  n016=3.41  n032=3.42  n064=3.42  n128=3.42
+speedup vs VESTA  ens    UD: n004=2.87  n008=2.94  n016=2.96  n032=2.97  n064=2.99  n128=2.99
+mem 1MM/COPSE    ens    UD: n004=35.1%  n008=32.2%  n016=30.6%  n032=29.8%  n064=29.5%  n128=29.4%
+speedup vs COPSE  size   OD: l016=11.51  l032=11.95  l064=12.07  l128=12.14  l256=12.16
+speedup vs VESTA  size   OD: l016=9.85  l032=10.22  l064=10.26  l128=10.35  l256=10.42
+mem 1MM/COPSE    size   OD: l016=9.3%  l032=7.9%  l064=7.4%  l128=7.1%  l256=7.0%
+speedup vs COPSE  size   UD: l016=4.18  l032=4.27  l064=4.39  l128=4.42  l256=4.41
+speedup vs VESTA  size   UD: l016=3.81  l032=3.86  l064=3.96  l128=3.98  l256=4.00
+mem 1MM/COPSE    size   UD: l016=28.8%  l032=25.1%  l064=23.9%  l128=23.3%  l256=23.2%
+speedup vs COPSE  depth  OD: d05=7.51  d06=8.78  d07=9.90  d08=11.78  d09=12.97  d10=14.48
+speedup vs VESTA  depth  OD: d05=5.99  d06=7.20  d07=8.30  d08=10.11  d09=11.30  d10=12.65
+mem 1MM/COPSE    depth  OD: d05=12.8%  d06=11.1%  d07=9.7%  d08=7.9%  d09=7.2%  d10=6.5%
+speedup vs COPSE  depth  UD: d05=2.89  d06=3.38  d07=3.84  d08=4.29  d09=4.78  d10=5.21
+speedup vs VESTA  depth  UD: d05=2.46  d06=2.92  d07=3.42  d08=3.88  d09=4.38  d10=4.80
+mem 1MM/COPSE    depth  UD: d05=37.7%  d06=32.2%  d07=28.3%  d08=25.1%  d09=22.6%  d10=20.7%
+speedup vs COPSE  full   OD: f3=4.08  f4=6.15  f5=7.50  f6=8.79  f7=10.13  f8=12.12
+speedup vs VESTA  full   OD: f3=1.70  f4=4.75  f5=6.01  f6=7.24  f7=8.50  f8=10.39
+mem 1MM/COPSE    full   OD: f3=26.4%  f4=17.2%  f5=12.8%  f6=10.3%  f7=8.6%  f8=7.0%
+speedup vs COPSE  full   UD: f3=1.80  f4=2.36  f5=2.90  f6=3.41  f7=3.94  f8=4.41
+speedup vs VESTA  full   UD: f3=1.45  f4=1.92  f5=2.45  f6=2.97  f7=3.51  f8=4.00
+mem 1MM/COPSE    full   UD: f3=66.8%  f4=47.8%  f5=37.2%  f6=30.6%  f7=26.2%  f8=23.0%
+speedup vs COPSE  prec   OD: n008p08=8.66  n008p16=8.33  n032p08=8.87  n032p16=8.78
+speedup vs VESTA  prec   OD: n008p08=7.10  n008p16=6.88  n032p08=7.31  n032p16=7.24
+mem 1MM/COPSE    prec   OD: n008p08=11.2%  n008p16=11.4%  n032p08=9.9%  n032p16=10.3%
+speedup vs COPSE  prec   UD: n008p08=3.35  n008p16=3.24  n032p08=3.43  n032p16=3.39
+speedup vs VESTA  prec   UD: n008p08=2.93  n008p16=2.86  n032p08=2.97  n032p16=2.94
+mem 1MM/COPSE    prec   UD: n008p08=32.2%  n008p16=33.2%  n032p08=29.8%  n032p16=30.0%
+exponent time ~ b^a  ens   OD COPSE a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  ens   OD COPSE a= 0.98  R2=1.000  (N=2^15)
+exponent time ~ b^a  ens   OD VESTA a= 1.00  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  ens   OD VESTA a= 0.98  R2=1.000  (N=2^15)
+exponent time ~ b^a  ens   OD 1MM   a= 0.99  R2=1.000  (N=2^14)
+exponent mem  ~ b^a  ens   OD 1MM   a= 0.92  R2=0.997  (N=2^14)
+exponent time ~ b^a  ens   UD COPSE a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  ens   UD COPSE a= 0.98  R2=1.000  (N=2^15)
+exponent time ~ b^a  ens   UD VESTA a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  ens   UD VESTA a= 0.98  R2=1.000  (N=2^15)
+exponent time ~ b^a  ens   UD 1MM   a= 0.98  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  ens   UD 1MM   a= 0.93  R2=0.999  (N=2^15)
+exponent time ~ b^a  size  OD COPSE a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  size  OD COPSE a= 0.97  R2=1.000  (N=2^15)
+exponent time ~ b^a  size  OD VESTA a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  size  OD VESTA a= 0.97  R2=1.000  (N=2^15)
+exponent time ~ b^a  size  OD 1MM   a= 0.97  R2=1.000  (N=2^14)
+exponent mem  ~ b^a  size  OD 1MM   a= 0.86  R2=0.998  (N=2^14)
+exponent time ~ b^a  size  UD COPSE a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  size  UD COPSE a= 0.97  R2=1.000  (N=2^15)
+exponent time ~ b^a  size  UD VESTA a= 0.99  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  size  UD VESTA a= 0.97  R2=1.000  (N=2^15)
+exponent time ~ b^a  size  UD 1MM   a= 0.97  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  size  UD 1MM   a= 0.89  R2=0.998  (N=2^15)
+exponent time ~ b^a  full  OD COPSE a= 1.23  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  full  OD COPSE a= 1.19  R2=1.000  (N=2^15)
+exponent time ~ b^a  full  OD 1MM   a= 0.94  R2=0.999  (N=2^14)
+exponent mem  ~ b^a  full  OD 1MM   a= 0.83  R2=0.994  (N=2^14)
+exponent time ~ b^a  full  UD COPSE a= 1.23  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  full  UD COPSE a= 1.19  R2=1.000  (N=2^15)
+exponent time ~ b^a  full  UD VESTA a= 1.26  R2=1.000  (N=2^15)
+exponent mem  ~ b^a  full  UD VESTA a= 1.22  R2=1.000  (N=2^15)
+exponent time ~ b^a  full  UD 1MM   a= 0.98  R2=0.999  (N=2^15)
+exponent mem  ~ b^a  full  UD 1MM   a= 0.90  R2=0.995  (N=2^15)
+depth d=5->10 at b=224->255: time x2.18  time/b x1.91  mem x2.21  OD COPSE
+depth d=5->10 at b=224->255: time x2.39  time/b x2.10  mem x2.41  OD VESTA
+depth d=5->10 at b=224->255: time x1.13  time/b x0.99  mem x1.13  OD 1MM
+depth d=5->10 at b=224->255: time x2.19  time/b x1.92  mem x2.21  UD COPSE
+depth d=5->10 at b=224->255: time x2.37  time/b x2.08  mem x2.39  UD VESTA
+depth d=5->10 at b=224->255: time x1.21  time/b x1.06  mem x1.21  UD 1MM
+ciphertext+key share of peak RSS (runs > 1 GB) COPSE: median=98.7% min=86.0% max=99.3%
+ciphertext+key share of peak RSS (runs > 1 GB) VESTA: median=98.0% min=82.8% max=99.0%
+ciphertext+key share of peak RSS (runs > 1 GB) 1MM  : median=92.1% min=71.4% max=97.0%
+1MM MatMul tiled: ens/n128 OD into 3 column blocks of 2646 (N=2^14 kept)
+fixed-L speedup n016 L=9: vs COPSE 3.40  vs VESTA 2.96
+fixed-L speedup n016 L=10: vs COPSE 3.39  vs VESTA 2.96
+fixed-L speedup n016 L=11: vs COPSE 3.37  vs VESTA 2.93
+fixed-L speedup n016 L=12: vs COPSE 3.40  vs VESTA 2.97
+fixed-L speedup n064 L=9: vs COPSE 3.42  vs VESTA 2.99
+fixed-L speedup n064 L=10: vs COPSE 3.42  vs VESTA 2.98
+fixed-L speedup n064 L=11: vs COPSE 3.43  vs VESTA 3.00
+fixed-L speedup n064 L=12: vs COPSE 3.44  vs VESTA 3.01
+MatMul operand streaming rate (GB/s, 6444Y): min=0.15 median=0.20 max=0.21
+predict from n004  ens   OD COPSE time |err| median= 0.3% max= 0.4%  mem |err| median= 0.3% max= 1.1%
+predict from n004  ens   OD VESTA time |err| median= 0.2% max= 1.3%  mem |err| median= 0.7% max= 2.0%
+predict from n004  ens   OD 1MM   time |err| median= 0.9% max= 4.2%  mem |err| median= 3.3% max= 9.0%
+predict from n004  ens   UD COPSE time |err| median= 0.3% max= 0.5%  mem |err| median= 0.3% max= 1.1%
+predict from n004  ens   UD VESTA time |err| median= 0.4% max= 1.4%  mem |err| median= 0.6% max= 1.8%
+predict from n004  ens   UD 1MM   time |err| median= 0.8% max= 1.7%  mem |err| median= 1.5% max= 3.1%
+predict from l016  size  OD COPSE time |err| median= 0.2% max= 0.3%  mem |err| median= 0.2% max= 0.3%
+predict from l016  size  OD VESTA time |err| median= 0.2% max= 0.7%  mem |err| median= 0.5% max= 0.6%
+predict from l016  size  OD 1MM   time |err| median= 0.2% max= 0.9%  mem |err| median= 3.3% max= 3.5%
+predict from l016  size  UD COPSE time |err| median= 0.5% max= 0.6%  mem |err| median= 0.2% max= 0.3%
+predict from l016  size  UD VESTA time |err| median= 0.4% max= 0.7%  mem |err| median= 0.5% max= 0.6%
+predict from l016  size  UD 1MM   time |err| median= 0.2% max= 0.8%  mem |err| median= 1.3% max= 1.5%
+predict from f3    full  OD 1MM   time |err| median= 3.0% max= 5.8%  mem |err| median= 3.9% max= 5.7%
+predict from d05   depth OD COPSE time |err| median= 0.1% max= 0.2%  mem |err| median= 0.0% max= 0.0%  (other N or L, not predicted: d08(N=2^15,L=10), d09(N=2^15,L=10), d10(N=2^15,L=10))
+predict from d05   depth OD VESTA time |err| median= 0.2% max= 0.2%  mem |err| median= 0.0% max= 0.0%  (other N or L, not predicted: d08(N=2^15,L=9), d09(N=2^15,L=9), d10(N=2^15,L=9))
+predict from d05   depth OD 1MM   time |err| median= 0.5% max= 1.0%  mem |err| median= 1.7% max= 2.2%
+predict from d05   depth UD COPSE time |err| median= 0.3% max= 0.4%  mem |err| median= 0.0% max= 0.0%  (other N or L, not predicted: d08(N=2^15,L=10), d09(N=2^15,L=10), d10(N=2^15,L=10))
+predict from d05   depth UD VESTA time |err| median= 0.4% max= 0.7%  mem |err| median= 0.0% max= 0.1%  (other N or L, not predicted: d08(N=2^15,L=10), d09(N=2^15,L=10), d10(N=2^15,L=10))
+predict from d05   depth UD 1MM   time |err| median= 0.2% max= 0.3%  mem |err| median= 0.2% max= 0.2%  (other N or L, not predicted: d08(N=2^15,L=10), d09(N=2^15,L=10), d10(N=2^15,L=10))
+OD speedup decomposition ens   n004     d= 6: #diag ratio=3.50  UD speedup=3.31  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  8.58
+OD speedup decomposition ens   n008     d= 6: #diag ratio=3.50  UD speedup=3.38  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  8.75
+OD speedup decomposition ens   n016     d= 6: #diag ratio=3.50  UD speedup=3.41  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  8.82
+OD speedup decomposition ens   n032     d= 6: #diag ratio=3.50  UD speedup=3.42  x 1MM param gain=2.60  / COPSE param gain=1.00  = OD speedup  8.89
+OD speedup decomposition ens   n064     d= 6: #diag ratio=3.50  UD speedup=3.42  x 1MM param gain=2.57  / COPSE param gain=1.00  = OD speedup  8.78
+OD speedup decomposition ens   n128     d= 6: #diag ratio=3.50  UD speedup=3.42  x 1MM param gain=2.53  / COPSE param gain=1.00  = OD speedup  8.65
+OD speedup decomposition size  l016     d= 8: #diag ratio=4.50  UD speedup=4.18  x 1MM param gain=2.74  / COPSE param gain=0.99  = OD speedup 11.51
+OD speedup decomposition size  l032     d= 8: #diag ratio=4.50  UD speedup=4.27  x 1MM param gain=2.79  / COPSE param gain=1.00  = OD speedup 11.95
+OD speedup decomposition size  l064     d= 8: #diag ratio=4.50  UD speedup=4.39  x 1MM param gain=2.75  / COPSE param gain=1.00  = OD speedup 12.07
+OD speedup decomposition size  l128     d= 8: #diag ratio=4.50  UD speedup=4.42  x 1MM param gain=2.74  / COPSE param gain=1.00  = OD speedup 12.14
+OD speedup decomposition size  l256     d= 8: #diag ratio=4.50  UD speedup=4.41  x 1MM param gain=2.75  / COPSE param gain=1.00  = OD speedup 12.16
+OD speedup decomposition full  f3       d= 3: #diag ratio=2.00  UD speedup=1.80  x 1MM param gain=2.27  / COPSE param gain=1.00  = OD speedup  4.08
+OD speedup decomposition full  f4       d= 4: #diag ratio=2.50  UD speedup=2.36  x 1MM param gain=2.62  / COPSE param gain=1.01  = OD speedup  6.15
+OD speedup decomposition full  f5       d= 5: #diag ratio=3.00  UD speedup=2.90  x 1MM param gain=2.58  / COPSE param gain=1.00  = OD speedup  7.50
+OD speedup decomposition full  f6       d= 6: #diag ratio=3.50  UD speedup=3.41  x 1MM param gain=2.58  / COPSE param gain=1.00  = OD speedup  8.79
+OD speedup decomposition full  f7       d= 7: #diag ratio=4.00  UD speedup=3.94  x 1MM param gain=2.57  / COPSE param gain=1.00  = OD speedup 10.13
+OD speedup decomposition full  f8       d= 8: #diag ratio=4.50  UD speedup=4.41  x 1MM param gain=2.73  / COPSE param gain=0.99  = OD speedup 12.12
+OD speedup decomposition depth d05      d= 5: #diag ratio=3.00  UD speedup=2.89  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  7.51
+OD speedup decomposition depth d06      d= 6: #diag ratio=3.50  UD speedup=3.38  x 1MM param gain=2.60  / COPSE param gain=1.00  = OD speedup  8.78
+OD speedup decomposition depth d07      d= 7: #diag ratio=4.00  UD speedup=3.84  x 1MM param gain=2.58  / COPSE param gain=1.00  = OD speedup  9.90
+OD speedup decomposition depth d08      d= 8: #diag ratio=4.50  UD speedup=4.29  x 1MM param gain=2.76  / COPSE param gain=1.00  = OD speedup 11.78
+OD speedup decomposition depth d09      d= 9: #diag ratio=5.00  UD speedup=4.78  x 1MM param gain=2.73  / COPSE param gain=1.01  = OD speedup 12.97
+OD speedup decomposition depth d10      d=10: #diag ratio=5.50  UD speedup=5.21  x 1MM param gain=2.78  / COPSE param gain=1.00  = OD speedup 14.48
+OD speedup decomposition prec  n008p08  d= 6: #diag ratio=3.50  UD speedup=3.35  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  8.66
+OD speedup decomposition prec  n008p16  d= 6: #diag ratio=3.50  UD speedup=3.24  x 1MM param gain=2.57  / COPSE param gain=1.00  = OD speedup  8.33
+OD speedup decomposition prec  n032p08  d= 6: #diag ratio=3.50  UD speedup=3.43  x 1MM param gain=2.60  / COPSE param gain=1.00  = OD speedup  8.87
+OD speedup decomposition prec  n032p16  d= 6: #diag ratio=3.50  UD speedup=3.39  x 1MM param gain=2.59  / COPSE param gain=1.00  = OD speedup  8.78
+equal-(b,d) f6(n=8,b=504,d=6,dens=1.00) vs n016(n=16,b=496,d=6,dens=0.49) OD: COPSE time/b 0.998 mem/b 1.000  VESTA time/b 1.001 mem/b 0.999  1MM time/b 1.002 mem/b 1.000
+equal-(b,d) f6(n=8,b=504,d=6,dens=1.00) vs n016(n=16,b=496,d=6,dens=0.49) UD: COPSE time/b 0.998 mem/b 0.999  VESTA time/b 0.999 mem/b 0.999  1MM time/b 0.997 mem/b 1.000
+equal-(b,d) f5(n=8,b=248,d=5,dens=1.00) vs d05(n=32,b=224,d=5,dens=0.31) OD: COPSE time/b 0.998 mem/b 0.995  VESTA time/b 1.005 mem/b 0.993  1MM time/b 1.000 mem/b 0.995
+equal-(b,d) f5(n=8,b=248,d=5,dens=1.00) vs d05(n=32,b=224,d=5,dens=0.31) UD: COPSE time/b 1.001 mem/b 0.994  VESTA time/b 0.994 mem/b 0.994  1MM time/b 0.995 mem/b 0.983
+equal-(b,d) f8(n=8,b=2040,d=8,dens=1.00) vs l256(n=8,b=1177,d=8,dens=0.58) OD: COPSE time/b 1.000 mem/b 0.999  VESTA time/b 1.000 mem/b 1.000  1MM time/b 1.003 mem/b 0.998
+equal-(b,d) f8(n=8,b=2040,d=8,dens=1.00) vs l256(n=8,b=1177,d=8,dens=0.58) UD: COPSE time/b 0.996 mem/b 0.999  VESTA time/b 0.998 mem/b 0.999  1MM time/b 0.997 mem/b 0.988

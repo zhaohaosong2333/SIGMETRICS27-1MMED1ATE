@@ -1,0 +1,13 @@
+Experiment,Peak Memory (MB)
+1MM-income,3548.23
+VESTA-income,27482.68
+COPSE-income,34798.46
+1MM-iris,440.01
+VESTA-iris,1714.71
+COPSE-iris,2160.85
+1MM-mnist,8155.39
+VESTA-mnist,73924.79
+COPSE-mnist,91699.54
+1MM-soccer,3075.64
+VESTA-soccer,23629.96
+COPSE-soccer,29903.33

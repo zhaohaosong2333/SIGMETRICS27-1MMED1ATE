@@ -1,0 +1,3 @@
+Headline (geomean over 8 Category-A models, OD, BGV), N-rep 95% CI:
+  OD speedup vs COPSE : 6.73 ± 0.05 ×   (n=3 reps)   [paper 6.7×]
+  mem footprint (1MM_OD/COPSE) : 13.4 ± 0.0 %   -> reduction 86.6 ± 0.0 %   [paper 13% / 87%]

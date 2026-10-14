@@ -1,0 +1,2 @@
+# seal-run se_rf  2026-07-08T06:19:13-04:00  host b007  part compute-v2
+Model name:                      Intel(R) Xeon(R) Gold 6444Y

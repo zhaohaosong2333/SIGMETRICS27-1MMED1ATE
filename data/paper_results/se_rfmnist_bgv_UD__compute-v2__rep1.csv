@@ -1,0 +1,4 @@
+Experiment,Encryption,Comparison,Reordering,Level Processing,Accumulation
+COPSE-mnist,366958,4416,156339,1026441,110
+1MM-mnist,98588,4703,0,329362,0
+VESTA-mnist,331632,4416,0,1097060,141

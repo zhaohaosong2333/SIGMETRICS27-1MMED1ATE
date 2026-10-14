@@ -1,0 +1,54 @@
+# 1MMED1ATE experiment manifest (TAB-separated). One row per experiment tag.
+# Columns: tag  family  model_folder  models  scheme  config  cpus  walltime
+#   family   : speed | memory | sweep | motivation
+#   models   : "-" = every .mdl in model_folder, else a comma-separated list of model stems
+#   cpus     : threads the paper used (one OpenMP thread per physical core of a 2x16-core Xeon 6444Y);
+#              the Slurm path requests this many cores, the local path uses the physical cores it finds
+#   walltime : Slurm time limit (generous; the paper's platform needed 25-60 min per Category-A tag,
+#              and 20 min - 3 h per sweep tag)
+# The same tag runs identically through reproduce/run_local.sh (plain execution) and
+# reproduce/slurm/submit.sh (Slurm). Both call reproduce/run_tag.sh.
+#
+# === Category A: the eight RF/GBDT models of Table 5 (BGV) ===
+# speed (stage timings) and memory (peak RSS under GNU time) -> Figure 11 + Table 9
+s_rf_bgv_ud	speed	data/models/rf	-	BGV	UD	32	03:00:00
+s_rf_bgv_od	speed	data/models/rf	-	BGV	OD	32	03:00:00
+s_gbdt_bgv_ud	speed	data/models/gbdt	-	BGV	UD	32	03:00:00
+s_gbdt_bgv_od	speed	data/models/gbdt	-	BGV	OD	32	03:00:00
+m_rf_bgv_ud	memory	data/models/rf	-	BGV	UD	32	06:00:00
+m_rf_bgv_od	memory	data/models/rf	-	BGV	OD	32	06:00:00
+m_gbdt_bgv_ud	memory	data/models/gbdt	-	BGV	UD	32	06:00:00
+m_gbdt_bgv_od	memory	data/models/gbdt	-	BGV	OD	32	06:00:00
+# === OpenFHE-BFV speed on the RF models -> the OpenFHE-BFV bars of Figure 15 ===
+# (MNIST is run as its own tag so the two can be scheduled separately; both are needed)
+s_rf_bfv_ud	speed	data/models/rf	income,iris,soccer	BFV	UD	32	04:00:00
+s_rf_bfv_od	speed	data/models/rf	income,iris,soccer	BFV	OD	32	04:00:00
+s_rfmnist_bfv_ud	speed	data/models/rf	mnist	BFV	UD	32	03:00:00
+s_rfmnist_bfv_od	speed	data/models/rf	mnist	BFV	OD	32	03:00:00
+# === Thread scaling (Figure 13): the Income RF at UD, one job per thread count ===
+#   run_local.sh --tags s_thread --omp 1   (and 2, 4, 8, 16, 32); the output carries an __omp<N> suffix
+s_thread	speed	data/models/rf	income	BGV	UD	32	03:00:00
+# === Motivation (Figure 2): one 1024x1024 MVMul at BGV depths 1-15 ===
+motiv	motivation	-	-	BGV	-	32	01:30:00
+# === Sensitivity study (Figs. Figure 12 and Figure 14, Table 8) ===
+# Six families of Income random forests under data/models/sweep/<family> (scripts/gen_sweep_models.py),
+# one isolated inference per (model, protocol) process under GNU time, every result checked against a
+# plaintext evaluation. config OD / UD = the paper's two depth settings; DEPTH = every multiplicative
+# depth from each protocol's OD minimum to 12 (the FHE-parameter family).
+sw_ens_od	sweep	data/models/sweep/ens	-	BGV	OD	32	10:00:00
+sw_ens_ud	sweep	data/models/sweep/ens	-	BGV	UD	32	10:00:00
+sw_size_od	sweep	data/models/sweep/size	-	BGV	OD	32	06:00:00
+sw_size_ud	sweep	data/models/sweep/size	-	BGV	UD	32	06:00:00
+sw_depth_od	sweep	data/models/sweep/depth	-	BGV	OD	32	04:00:00
+sw_depth_ud	sweep	data/models/sweep/depth	-	BGV	UD	32	04:00:00
+sw_full_od	sweep	data/models/sweep/full	-	BGV	OD	32	06:00:00
+sw_full_ud	sweep	data/models/sweep/full	-	BGV	UD	32	06:00:00
+sw_prec_od	sweep	data/models/sweep/prec	-	BGV	OD	32	06:00:00
+sw_prec_ud	sweep	data/models/sweep/prec	-	BGV	UD	32	06:00:00
+sw_fhe	sweep	data/models/sweep/fhe	-	BGV	DEPTH	32	12:00:00
+# the MNIST RF of Category A through the sweep harness (operation counts and ciphertext sizes for
+# Table 8)
+sw_catA_rf_od	sweep	data/models/rf	mnist	BGV	OD	32	02:00:00
+# === Smoke tests (minutes): the speed path on three tiny Iris forests, the sweep path on one model ===
+smoke	speed	data/models/micro	-	BGV	OD	32	00:30:00
+sw_smoke	sweep	data/models/sweep/full	f3	BGV	OD	32	00:30:00

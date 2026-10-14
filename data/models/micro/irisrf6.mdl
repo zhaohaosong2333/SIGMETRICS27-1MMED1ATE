@@ -1,0 +1,2 @@
+["setosa", "versicolor", "virginica"]
+Branch {threshold = Threshold {feat = F 2, val = 126}, left = Label (L 0), right = Branch {threshold = Threshold {feat = F 2, val = 255}, left = Branch {threshold = Threshold {feat = F 2, val = 244}, left = Label (L 1), right = Branch {threshold = Threshold {feat = F 3, val = 247}, left = Label (L 1), right = Label (L 1)}}, right = Branch {threshold = Threshold {feat = F 3, val = 255}, left = Branch {threshold = Threshold {feat = F 0, val = 255}, left = Label (L 1), right = Label (L 2)}, right = Label (L 2)}}}

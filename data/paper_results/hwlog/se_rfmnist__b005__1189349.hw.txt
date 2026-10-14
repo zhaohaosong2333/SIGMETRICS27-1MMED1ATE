@@ -1,0 +1,2 @@
+# seal-run se_rfmnist  2026-10-02T11:09:28-04:00  host b005  part compute-v2
+Model name:                      Intel(R) Xeon(R) Gold 6444Y

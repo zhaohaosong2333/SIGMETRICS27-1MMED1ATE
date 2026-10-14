@@ -1,0 +1,10 @@
+# The conda env "1mm-core" (environment/setup_env.sh): the OpenFHE system, model training and plotting.
+# Python 3.10 or 3.12 (not 3.11): the PyPI openfhe wheels are built for those interpreters.
+# scikit-learn/pandas are pinned to the versions that produced the committed models and the sweep
+# forests (train -> serialize -> compile must stay bit-identical).
+openfhe==1.5.1.0.22.4
+numpy<2
+scikit-learn==1.3.2
+pandas==2.1.4
+psutil
+matplotlib==3.10.9
